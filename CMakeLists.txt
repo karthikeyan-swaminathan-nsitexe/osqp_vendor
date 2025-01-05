@@ -19,6 +19,10 @@ macro(build_osqp)
     list(APPEND extra_cmake_args -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE})
   endif()
 
+  if(DEFINED CMAKE_TOOLCHAIN_FILE)
+    list(APPEND extra_cmake_args "-DCMAKE_TOOLCHAIN_FILE=${CMAKE_TOOLCHAIN_FILE}")
+  endif()
+  
   include(ExternalProject)
   externalproject_add(osqp-${git_tag}
     GIT_REPOSITORY https://github.com/osqp/osqp.git
